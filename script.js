@@ -44,3 +44,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
     }
+
+    function addToHistory(color) {
+        const box = document.createElement("div");
+        box.classList.add("color-box");
+        box.style.backgroundColor = color;
+        box.addEventListener("click", () => updateColorInfo(color));
+        colorHistory.prepend(box);
+    }
+
+    function generateShades(color) {
+        colorShades.innerHTML = "";
+        for (let i = 1; i <= 5; i++) {
+            let shade = lightenDarkenColor(color, i * -20);
+            const box = document.createElement("div");
+            box.classList.add("color-box");
+            box.style.backgroundColor = shade;
+            box.addEventListener("click", () => updateColorInfo(shade));
+            colorShades.appendChild(box);
+        }
+    }
