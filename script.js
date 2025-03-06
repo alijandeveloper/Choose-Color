@@ -64,3 +64,32 @@ document.addEventListener("DOMContentLoaded", () => {
             colorShades.appendChild(box);
         }
     }
+
+    function lightenDarkenColor(hex, amt) {
+        let num = parseInt(hex.slice(1), 16);
+        let r = (num >> 16) + amt;
+        let g = ((num >> 8) & 0x00FF) + amt;
+        let b = (num & 0x0000FF) + amt;
+        r = Math.min(255, Math.max(0, r));
+        g = Math.min(255, Math.max(0, g));
+        b = Math.min(255, Math.max(0, b));
+        return `#${(r << 16 | g << 8 | b).toString(16).padStart(6, "0")}`;
+    }
+
+    colorPicker.addEventListener("input", (e) => updateColorInfo(e.target.value));
+    randomColorBtn.addEventListener("click", () => {
+        let randomHex = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`;
+        updateColorInfo(randomHex);
+    });
+
+    copyButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const targetId = e.target.getAttribute("data-target");
+            const textToCopy = document.getElementById(targetId).textContent;
+            navigator.clipboard.writeText(textToCopy);
+            alert("Copied: " + textToCopy);
+        });
+    });
+
+    updateColorInfo("#000000"); // Initialize with black color
+});
