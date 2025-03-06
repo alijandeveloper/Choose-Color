@@ -7,3 +7,31 @@ body {
     background-color: #f4f4f4;
     margin: 0;
 }
+.container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input[type="color"] {
+    width: 100px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+.color-info p {
+    margin: 10px 0;
+}
+.copy-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.copy-btn:hover {
+    background: #0056b3;
+}
